@@ -1,0 +1,8 @@
+#!/bin/sh
+# Launch acme editor detached and
+# without writing output to terminal.
+
+inacme=yes \
+TERM=dumb \
+acme -a -f $font $* \
+> /dev/null 2>&1 &

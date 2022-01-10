@@ -1,0 +1,4 @@
+#!/usr/bin/env rc
+
+if (~ $1 '') ssam 'x/^[^ ]/d'
+if not ssam 'x/^/c/'$1

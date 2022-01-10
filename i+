@@ -1,0 +1,8 @@
+#!/usr/bin/env rc
+
+spaces=''
+
+if (~ $1 '') spaces='  '
+if not for (i in `{seq $1}) spaces=$spaces^' '
+
+ssam 'x/^/c/'$spaces'/'

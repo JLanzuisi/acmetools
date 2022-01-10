@@ -1,0 +1,5 @@
+#!/usr/bin/env rc
+
+files=lhexsheet2.cls
+
+grep -n -E '(newcommand|def|newenvironment|newcounter|newlength|let)\{'$1'\}' $files

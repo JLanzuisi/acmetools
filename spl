@@ -1,0 +1,17 @@
+#!/usr/bin/env rc
+
+if (~  $1 '')  {echo 'Usage: spl <file path>' ; exit}
+
+filepath=`{echo $1 | ssam 'x/\//i/\\'}
+
+if (~ $2 '') lang=en_US
+if not lang=$2
+
+aspell -a --lang=$lang \
+	| grep '^(&|#)' \
+	| ssam 'x/[0-9]+ [0-9]+:/d' \
+	| ssam 'x/\n/c/\n\n/' \
+	| ssam 'x/^(&|#) /d' \
+	| ssam 'x/^[a-zA-Z]+/a/\/' \
+	| ssam 'x/^[a-zA-Z]+/i/'$filepath':\/'
+
