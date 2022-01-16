@@ -1,0 +1,5 @@
+#!/bin/sh
+
+files=`ls *.cls *.tex`
+
+grep -n -E '(newcommand|def|newenvironment|newcounter|newlength|let)\{\\?'$1'\}' $files

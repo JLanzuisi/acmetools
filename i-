@@ -1,8 +1,3 @@
-#!/usr/bin/env rc
+#!/bin/sh
 
-spaces=''
-
-if (~ $1 '') spaces='  '
-if not for (i in `{seq $1}) spaces=$spaces^' '
-
-ssam 'x/^'$spaces'/d'
+ssam 'x/^	/d'
