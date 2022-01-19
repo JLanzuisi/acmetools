@@ -1,17 +1,15 @@
-#!/usr/bin/env rc
+#!/bin/sh
 
-if (~  $1 '')  {echo 'Usage: spl <file path>' ; exit}
+tempfile=/tmp/spltemp
 
-filepath=`{echo $1 | ssam 'x/\//i/\\'}
+cat > $tempfile
 
-if (~ $2 '') lang=en_US
-if not lang=$2
+if [ -z $1 ];then
+	lang=en_US
+else
+	lang=$2
+fi
 
-aspell -a --lang=$lang \
-	| grep '^(&|#)' \
-	| ssam 'x/[0-9]+ [0-9]+:/d' \
-	| ssam 'x/\n/c/\n\n/' \
-	| ssam 'x/^(&|#) /d' \
-	| ssam 'x/^[a-zA-Z]+/a/\/' \
-	| ssam 'x/^[a-zA-Z]+/i/'$filepath':\/'
+rt aspell --lang=$lang -c $tempfile
 
+cat $tempfile
