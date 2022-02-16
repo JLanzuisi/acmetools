@@ -1,0 +1,4 @@
+#!/bin/sh
+PAGER=nobs export PAGER
+PS1='PROMPT> ' export PS1
+9term sh

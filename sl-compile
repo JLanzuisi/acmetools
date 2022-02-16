@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cd /home/jhonny/git/sharelatex
+
+relpath=`echo $1 | ssam 'x/\/home\/jhonny\/git\/sharelatex\//d'`
+
+texfot ./compile-test.sh $relpath | egrep -v '[Ww]arning|Font|lor page stack 0|Underfull|Overfull'

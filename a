@@ -1,0 +1,13 @@
+#!/bin/sh
+
+TERM=dumb
+acmeshell=sh
+SHELL=sh
+PAGER=nobs
+EDITOR=E
+
+if [ -f './acme.dump' ]; then
+	LOAD_DUMP='-l acme.dump'
+fi
+
+acme -a $LOAD_DUMP $* > /dev/null 2>&1 &
