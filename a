@@ -1,13 +1,8 @@
 #!/bin/sh
 
-TERM=dumb
-acmeshell=sh
-SHELL=sh
-PAGER=nobs
-EDITOR=E
-
-if [ -f './acme.dump' ]; then
-	LOAD_DUMP='-l acme.dump'
-fi
-
-acme -a $LOAD_DUMP $* > /dev/null 2>&1 &
+TERM=dumb \
+acmeshell=sh \
+SHELL=sh \
+PAGER=nobs \
+EDITOR=E \
+	acme -a -f /mnt/font/'InputSerifNarrow-Regular'/10a/font -F /mnt/font/'InputMonoNarrow-Regular'/10a/font $* > /dev/null 2>&1 &
