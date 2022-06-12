@@ -5,4 +5,4 @@ acmeshell=sh \
 SHELL=sh \
 PAGER=nobs \
 EDITOR=E \
-	acme -a -f /mnt/font/'InputSerifNarrow-Regular'/10a/font -F /mnt/font/'InputMonoNarrow-Regular'/10a/font $* > /dev/null 2>&1 &
+	acme -a -f /mnt/font/'IBMPlexSans-Text'/11a/font -F /mnt/font/'Unifont'/12a/font $* > /dev/null 2>&1 &
