@@ -1,7 +1,11 @@
 #!/bin/sh
 
+relpath=$(readlink -f $1 | ssam 'x/\/home\/jhonny\/git\/sharelatex\//d')
+
 cd /home/jhonny/git/sharelatex
 
-relpath=`echo $1 | ssam 'x/\/home\/jhonny\/git\/sharelatex\//d'`
+#time texfot ./compile-test.sh $relpath | egrep -v '[Ww]arning|Font|lor page stack 0|Underfull|Overfull'
 
-texfot ./compile-test.sh $relpath | egrep -v '[Ww]arning|Font|lor page stack 0|Underfull|Overfull'
+echo $relpath
+
+./compile-test.sh $relpath

@@ -1,5 +1,0 @@
-#!/bin/sh
-
-files=`find /home/jhonny/git/sharelatex -regextype posix-egrep -regex '.*\.(tex|cls|sty)'`
-
-grep -n -E '(newcommand|def|newenvironment|newcounter|newlength|let)\{?\\?'$1'\}?' $files

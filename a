@@ -1,8 +1,0 @@
-#!/bin/sh
-
-TERM=dumb \
-acmeshell=sh \
-SHELL=sh \
-PAGER=nobs \
-EDITOR=E \
-	acme -a -f /mnt/font/'IBMPlexMono-Text'/10a/font -F /mnt/font/'Unifont'/12a/font $* > /dev/null 2>&1 &
