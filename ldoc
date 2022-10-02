@@ -1,7 +1,23 @@
 #!/bin/sh
 
+usage() {
+	echo "lhdoc <DTX_FILE>"
+	echo "Either current directory or its parent"
+	echo "must contain a 'package-documentation'"
+	echo "directory."
+	exit 1
+}
+
 DTX_FILE=$1
-DIR="LatexClass/dist/tex/latex/lhexsheet/package-documentation/"
+if [ -d "./package-documentation" ]
+then
+	DIR="./package-documentation"
+else
+	if [ -d "../package-documentation" ]
+	then
+		DIR="../package-documentation"
+	fi
+fi
 
 echo "$DTX_FILE" | 
     entr pdflatex -halt-on-error -output-directory "$DIR" "$DTX_FILE"
