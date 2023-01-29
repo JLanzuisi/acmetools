@@ -1,0 +1,10 @@
+#!/bin/sh
+
+pgrep plumber || plumber
+
+TERM=dumb
+PAGER=nobs
+
+chown jhonny:jhonny /mnt/acme
+
+9 acme -f /mnt/font/'GoRegular'/13a/font -a -m /mnt/acme &

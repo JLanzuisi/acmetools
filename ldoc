@@ -9,15 +9,12 @@ usage() {
 }
 
 DTX_FILE=$1
-if [ -d "./package-documentation" ]
-then
-	DIR="./package-documentation"
-else
-	if [ -d "../package-documentation" ]
-	then
-		DIR="../package-documentation"
-	fi
-fi
 
-echo "$DTX_FILE" | 
-    entr pdflatex -halt-on-error -output-directory "$DIR" "$DTX_FILE"
+BASENAME=$(basename $1 .dtx)
+
+export TEXINPUTS=packages//:
+
+texfot --ignore 'Overfull|Underfull' pdflatex -shell-escape -output-directory=package-documentation -halt-on-error "$DTX_FILE" \
+&& makeindex -s gind.ist package-documentation/$BASENAME.idx \
+&& makeindex -s gglo.ist -o package-documentation/$BASENAME.gls package-documentation/$BASENAME.glo \
+&& texfot --ignore 'Overfull|Underfull' pdflatex -shell-escape -output-directory=package-documentation -halt-on-error "$DTX_FILE"

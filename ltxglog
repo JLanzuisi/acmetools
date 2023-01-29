@@ -1,0 +1,3 @@
+#!/bin/sh
+
+for i in test/**/**/main.log; do grep -n 'Error |^! ' $i | grep -v 'GenericError'; done

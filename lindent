@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$HOME/src/latexindent-linux -l $HOME/src/latexindent-linux.yaml -cruft=/tmp/ $1 | fmt -s

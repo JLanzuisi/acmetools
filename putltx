@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo put >> /mnt/acme/$winid/ctl
+
+$HOME/src/latexindent-linux -s -y="defaultIndent: '    '" -cruft=/tmp/ -w  $samfile
+
+echo get >> /mnt/acme/$winid/ctl
+
+sl-compile  $samfile

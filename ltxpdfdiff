@@ -1,0 +1,3 @@
+#!/bin/sh
+
+for i in test/**/**/main.pdf ; do difp ../master/$i $i ; done

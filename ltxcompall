@@ -1,0 +1,5 @@
+#!/bin/sh
+
+time sh -c 'for i in test/**/**/main.tex; do ./compile-test.sh $i && ./compile-test.sh $i; done'
+
+ltxglog

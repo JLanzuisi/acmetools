@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ -z $1 ]
+then
+	time tar -cvf bk.tar projects/linguahouse
+	rsync -P bk.tar /mnt/z/virtual-machines/
+	rm bk.tar
+else
+	rsync -P /mnt/z/virtual-machines/bk.tar .
+	time tar -xf bk.tar
+	rm bk.tar
+fi

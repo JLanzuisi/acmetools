@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo put >> /mnt/acme/$winid/ctl
+
+dtxc $samfile

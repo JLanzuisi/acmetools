@@ -1,11 +1,9 @@
 #!/bin/sh
 
-relpath=$(readlink -f $1 | ssam 'x/\/home\/jhonny\/git\/sharelatex\//d')
+relpath=$(readlink -f $1 | ssam 'x/\/home\/jhonny\/projects\/linguahouse\//d')
+currbranch=$(echo $relpath | cut -d '/' -f 1)
 
-cd /home/jhonny/git/sharelatex
-
-#time texfot ./compile-test.sh $relpath | egrep -v '[Ww]arning|Font|lor page stack 0|Underfull|Overfull'
-
-echo $relpath
+cd /home/jhonny/projects/linguahouse/$currbranch
+relpath=$(echo $relpath | ssam 'x/'$currbranch'\//d')
 
 ./compile-test.sh $relpath
