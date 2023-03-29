@@ -1,0 +1,8 @@
+#!/bin/bash
+
+FILENAME=$(fzf)
+
+if [ ! -z $FILENAME ]
+then
+	v $FILENAME
+fi

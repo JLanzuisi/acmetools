@@ -1,0 +1,11 @@
+#!/bin/bash
+
+CHOICE=$(rg -n . | fzf)
+FILENAME=$(echo $CHOICE | cut -d ":" -f 1)
+LINENO=$(echo $CHOICE | cut -d ":" -f 2)
+
+if [ ! -z $FILENAME ]
+then
+	v +"$LINENO" "$FILENAME"
+fi
+

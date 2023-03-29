@@ -1,0 +1,12 @@
+#!/bin/bash
+
+FILE='/tmp/vimbufferlist'
+
+if [ -f $FILE ]
+then
+	FILENAME=$(cat $FILE | fzf | cut -d '"' -f 2)
+	if [ ! -z $FILENAME ]
+	then
+		v $FILENAME
+	fi
+fi
