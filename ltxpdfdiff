@@ -1,5 +1,5 @@
 #!/bin/sh
 
-for i in $(find . -name *.pdf)
+for i in $(find test -name *.pdf)
 do difp ../master/$i $i
 done

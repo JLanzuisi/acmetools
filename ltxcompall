@@ -1,5 +1,5 @@
 #!/bin/sh
 
-for i in $(find . -name *.tex); do ./compile-test.sh "$i" && ./compile-test.sh "$i"; done
+for i in $(find test/ -name *.tex); do ./compile-test.sh "$i" && ./compile-test.sh "$i"; done
 
 ltxglog

@@ -1,5 +1,5 @@
 #!/bin/sh
 
-for i in $(find . -name *.log)
+for i in $(find ./test/ -name *.log)
 do grep --color=always -EHn 'Error |^! ' $i | grep --color=always -vH 'GenericError'
 done
