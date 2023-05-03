@@ -1,9 +1,0 @@
-SCRIPTS AND SMALL UTILITIES
-
-This repo holds some small programs that help me use acme. They may
-not be portable, as I'm not a great programmer. Feel free to open any
-issues.
-
-As these are scripts for acme, they assume to some degree plan9port
-utilities in $path, i.e., ssam is heavely used.
-
