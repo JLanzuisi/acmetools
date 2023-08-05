@@ -1,5 +1,35 @@
 #!/bin/sh
 
-for i in $(find test/ -name *.tex); do ./compile-test.sh "$i" && ./compile-test.sh "$i"; done
+for arg in "$@"
+do
+    case "$arg" in
+        -f)
+            fast=1
+            ;;
+        -d)
+            for i in "$@"
+            do
+                case "$i" in
+                    -*)
+                        ;;
+                    *)
+                        dir="$i"
+                        ;;
+                esac
+            done
+            ;;
+    esac
+done
+
+if [ -z "$dir" ]
+then
+    dir=test
+fi
+
+if [ -z "$fast" ]; then
+    for i in $(find "$dir" -name *.tex); do ./compile-test.sh "$i" && ./compile-test.sh "$i"; done
+else
+    for i in $(find "$dir" -name *.tex); do ./compile-test.sh "$i"; done
+fi
 
 ltxglog

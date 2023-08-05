@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TEMPDIFF='/tmp/diff.pdf'
+TEMPDIFF="/tmp/diff.pdf"
 
 if [ ! -f $1 ]
 then
@@ -15,5 +15,4 @@ then
 fi
 
 echo "Diffing $1 vs $2"
-/home/jhonny/src/diff-pdf/diff-pdf -msg --output-diff=$TEMPDIFF $1 $2 \
-	|| evince $TEMPDIFF
+diff-pdf -ms --output-diff=$TEMPDIFF $1 $2 || evince $TEMPDIFF
