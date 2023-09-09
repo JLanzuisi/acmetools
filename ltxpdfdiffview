@@ -1,0 +1,50 @@
+#!/bin/bash
+
+counter=1
+
+tmpdir=/tmp/diff-pdf
+
+while true; do
+    let counter++
+    if [ -f "$tmpdir/diff-$counter.pdf" ]; then
+        evince $tmpdir/diff-$counter.pdf
+    else
+        echo "File $tmpdir/diff-$counter.pdf not found."
+        echo "What should I do?"
+        echo "	Retry (R). Skip (S). Quit (Q)."
+        read action
+        case "$action" in
+            R)
+                let counter--
+                continue
+                ;;
+            S)
+                continue
+                ;;
+            Q)
+                break
+                ;;
+            *)
+                echo "Input $action not recognized"
+                exit 1
+                ;;
+        esac
+    fi
+done
+
+echo "Delete $tmpdir?"
+echo "	Yes (Y). No (N)."
+read action
+case "$action" in
+    Y)
+        echo "Deleting $tmpdir"
+        rm -rf $tmpdir
+        ;;
+    N)
+        echo "Keeping $tmpdir"
+        ;;
+    *)
+        echo "Input $action not recognized"
+        exit 1
+        ;;
+esac

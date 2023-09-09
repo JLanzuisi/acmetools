@@ -1,5 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-for i in $(find test -name *.pdf)
-do difp ../master/$i $i
+counter=0
+
+rm -rf /tmp/diff-pdf
+mkdir -p /tmp/diff-pdf
+for i in $(find test -name *.pdf); do
+    noview=1 difp ../master/$i $i
 done

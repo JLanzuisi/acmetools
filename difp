@@ -1,6 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-TEMPDIFF="/tmp/diff.pdf"
+if [ -z "$tmpdiff" ]; then
+    mkdir -p /tmp/diff-pdf
+    tmpdiff="/tmp/diff-pdf/diff.pdf"
+fi
 
 if [ ! -f $1 ]
 then
@@ -14,5 +17,16 @@ then
 	exit 0
 fi
 
+create_diff() {
+    index=$(ls -1 /tmp/diff-pdf/ | wc -l)
+    let index++
+    newtmpdiff="/tmp/diff-pdf/diff-$index.pdf"
+    mv $tmpdiff $newtmpdiff
+}
+
 echo "Diffing $1 vs $2"
-diff-pdf -ms --output-diff=$TEMPDIFF $1 $2 || evince $TEMPDIFF
+if [ -z "$noview" ]; then
+    diff-pdf -ms --output-diff=$tmpdiff $1 $2 || evince $tmpdiff
+else
+    diff-pdf -ms --output-diff=$tmpdiff $1 $2 || create_diff
+fi
