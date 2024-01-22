@@ -26,7 +26,7 @@ create_diff() {
 
 echo "Diffing $1 vs $2"
 if [ -z "$noview" ]; then
-    diff-pdf -ms --output-diff=$tmpdiff $1 $2 || evince $tmpdiff
+    diff-pdf -ms --output-diff=$tmpdiff $1 $2 || atril $tmpdiff
 else
     diff-pdf -ms --output-diff=$tmpdiff $1 $2 || create_diff
 fi

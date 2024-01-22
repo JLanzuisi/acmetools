@@ -1,0 +1,11 @@
+#!/bin/sh
+
+pdf_file=$1
+tmp_file=$(mktemp --suffix .pdf)
+
+while true; do
+	rsync -vP j@192.168.0.100:$1 $tmp_file
+	atril $tmp_file
+done
+
+rm -f $tmp_file

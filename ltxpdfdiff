@@ -1,9 +1,22 @@
 #!/bin/bash
 
+if [ -z "$1" ]; then
+    dir=test
+else
+    dir="$1"
+fi
+
 counter=0
 
 rm -rf /tmp/diff-pdf
 mkdir -p /tmp/diff-pdf
-for i in $(find test -name *.pdf); do
-    noview=1 difp ../master/$i $i
-done
+
+if [ -z "$local" ]; then
+    for i in $(find $dir -name *.pdf); do
+        noview=1 difp ../sharelatex/$i $i
+    done
+else
+    for i in $(find $dir -name main.pdf); do
+        noview=1 difp $i $i.old
+    done
+fi

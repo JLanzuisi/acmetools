@@ -1,0 +1,11 @@
+#!/bin/sh
+
+fontdir="$PLAN9/font"
+
+PATH="$HOME/bin/helperscripts/acme:$PATH"
+
+if ! pgrep -x plumber >/dev/null; then
+    plumber
+fi
+
+9 acme -f $fontdir/pelm/unicode.9.font $* &

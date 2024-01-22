@@ -7,7 +7,7 @@ tmpdir=/tmp/diff-pdf
 while true; do
     let counter++
     if [ -f "$tmpdir/diff-$counter.pdf" ]; then
-        evince $tmpdir/diff-$counter.pdf
+        atril $tmpdir/diff-$counter.pdf
     else
         echo "File $tmpdir/diff-$counter.pdf not found."
         echo "What should I do?"
