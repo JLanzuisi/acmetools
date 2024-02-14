@@ -1,11 +1,16 @@
 #!/bin/sh
 
 fontdir="$PLAN9/font"
+font=/mnt/font/IBMPlexMono-Text/11a/font
 
-PATH="$HOME/bin/helperscripts/acme:$PATH"
+export PATH="$HOME/helperscripts/acme-tools:$PATH"
+export EDITOR=E
+export acmeshell=/bin/sh
+export SHELL=/bin/sh
+export PAGER=cat
 
 if ! pgrep -x plumber >/dev/null; then
     plumber
 fi
 
-9 acme -f $fontdir/pelm/unicode.9.font $* &
+acme -a -f $font $* &

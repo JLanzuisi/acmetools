@@ -1,0 +1,10 @@
+#!/bin/sh
+
+root=`git rev-parse --show-toplevel`
+
+if [ -z $root ]; then
+    echo "Not a git repo."
+    exit 1
+fi
+
+g $* $root

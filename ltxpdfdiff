@@ -1,9 +1,25 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
+for arg in "$@"
+do
+    case "$arg" in
+        -d)
+            for i in "$@"
+            do
+                case "$i" in
+                    -*)
+                        ;;
+                    *)
+                        dir="$i"
+                        ;;
+                esac
+            done
+            ;;
+    esac
+done
+
+if [ -z "$dir" ]; then
     dir=test
-else
-    dir="$1"
 fi
 
 counter=0

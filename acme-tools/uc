@@ -1,0 +1,10 @@
+#!/bin/sh
+
+file=`basename $samfile`
+
+case $file in
+    *.tex | *.dtx | *.sty | *.cls ) char='%' ;;
+    * ) char='#'
+esac
+
+sed -e 's/^'$char' //'
