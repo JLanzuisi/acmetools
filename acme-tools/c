@@ -1,10 +1,9 @@
 #!/bin/sh
 
+source comment-char.sh
+
 file=`basename $samfile`
 
-case $file in
-    *.tex | *.dtx | *.sty | *.cls ) char='%' ;;
-    * ) char='#'
-esac
+get_char "$file"
 
 sed -e 's/^/'$char' /'

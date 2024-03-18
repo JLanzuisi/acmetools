@@ -1,16 +1,19 @@
 #!/bin/sh
 
-fontdir="$PLAN9/font"
-font=/mnt/font/IBMPlexMono-Text/11a/font
+font=/mnt/font/CascadiaMono-Regular/12a/font
 
-export PATH="$HOME/helperscripts/acme-tools:$PATH"
-export EDITOR=E
-export acmeshell=/bin/sh
-export SHELL=/bin/sh
-export PAGER=cat
+export PATH="$HOME/helperscripts/acme-tools:$PATH" \
+    EDITOR=editinacme \
+    acmeshell=/bin/bash \
+    SHELL=/bin/bash \
+    PAGER="plumb -i -d edit" \
+    TERM=dumb \
+    NO_COLOR=1
 
 if ! pgrep -x plumber >/dev/null; then
     plumber
 fi
+
+cat $HOME/lib/plumbing | 9p write plumb/rules # may need the plumber
 
 acme -a -f $font $* &
