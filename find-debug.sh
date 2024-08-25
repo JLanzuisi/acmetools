@@ -10,6 +10,7 @@ while true; do
 
     if [ -f debug.sh ]; then
 	echo "Executing $PWD/debug.sh"
+    echo "======================="
 	exec $PWD/debug.sh
     else
 	cd ..

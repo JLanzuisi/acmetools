@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if [ -z "$tmpdiff" ]; then
-    mkdir -p /tmp/diff-pdf
-    tmpdiff="/tmp/diff-pdf/diff.pdf"
-fi
-
 if [ ! -f $1 ]
 then
 	echo "!ERROR: file $1 not found. No diff performed"
@@ -17,16 +12,13 @@ then
 	exit 0
 fi
 
-create_diff() {
-    index=$(ls -1 /tmp/diff-pdf/ | wc -l)
-    let index++
-    newtmpdiff="/tmp/diff-pdf/diff-$index.pdf"
-    mv $tmpdiff $newtmpdiff
-}
+mkdir -p /tmp/diff-pdf
+tmpdir=/tmp/diff-pdf
+tmpdiff="$(echo $1 | sed -e 's/\///g')"
 
 echo "Diffing $1 vs $2"
 if [ -z "$noview" ]; then
-    diff-pdf -ms --output-diff=$tmpdiff $1 $2 || atril $tmpdiff
+    diff-pdf -ms --output-diff=$tmpdir/$tmpdiff $1 $2 && rm $tmpdir/$tmpdiff || atril $tmpdir/$tmpdiff
 else
-    diff-pdf -ms --output-diff=$tmpdiff $1 $2 || create_diff
+    diff-pdf -ms --output-diff=$tmpdir/$tmpdiff $1 $2 && rm $tmpdir/$tmpdiff
 fi

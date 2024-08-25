@@ -24,15 +24,40 @@ fi
 
 counter=0
 
-rm -rf /tmp/diff-pdf
-mkdir -p /tmp/diff-pdf
+tmpdir=/tmp/diff-pdf
+rm -rf $tmpdir
+mkdir -p $tmpdir
 
 if [ -z "$local" ]; then
-    for i in $(find $dir -name *.pdf); do
-        noview=1 difp ../sharelatex/$i $i
+    export noview=1
+    find $dir -name '*.pdf' | parallel difp '../sharelatex/{} {}'
+else
+    find $dir -name '*.pdf' | parallel difp '{} {}.old'
+fi
+
+if [ ! -z "$(find $tmpdir -name *.pdf)" ]; then
+    for pdf in $tmpdir/*.pdf; do
+        atril $pdf
     done
 else
-    for i in $(find $dir -name main.pdf); do
-        noview=1 difp $i $i.old
-    done
+    echo $tmpdir empty. Deleting.
+    rm -rf $tmpdir
+    exit 0
 fi
+
+echo "Delete $tmpdir?"
+echo "	Yes (Y). No (N)."
+read action
+case "$action" in
+    Y|y)
+        echo "Deleting $tmpdir"
+        rm -rf $tmpdir
+        ;;
+    N|n)
+        echo "Keeping $tmpdir"
+        ;;
+    *)
+        echo "Input $action not recognized"
+        exit 1
+        ;;
+esac
