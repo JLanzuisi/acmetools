@@ -1,0 +1,12 @@
+#!/usr/bin/env rc
+
+. comment-char
+
+if (~ $samfile '') {
+	echo $0 must be called from acme.
+	exit 1
+}
+
+get_char `{basename $samfile}
+
+sed -e 's/^'$char' //'

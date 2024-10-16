@@ -1,0 +1,9 @@
+#!/usr/bin/env rc
+
+root=`{git rev-parse --show-toplevel}
+
+if (~ $root '') exit 1
+
+echo $root
+
+f $* $root

@@ -1,0 +1,15 @@
+#!/usr/bin/env rc
+
+flag e +
+
+if (~ $samfile '') {
+	echo Variable '$samfile' empty, `{basename $0} should be called from acme.
+	exit 1
+}
+
+filename=`{echo $samfile | ssam 'x/\//i/\\/'}
+tab='	'
+
+nuspell >[2=1] | grep -e '^& Wrong:' | ssam 's/^& Wrong: ([a-z]+)./'$filename':\/\1\n'$tab'/g'
+
+# TODO: in acme regex match only word boundaries

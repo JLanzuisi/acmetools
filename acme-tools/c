@@ -1,9 +1,0 @@
-#!/bin/sh
-
-source comment-char.sh
-
-file=`basename $samfile`
-
-get_char "$file"
-
-sed -e 's/^/'$char' /'

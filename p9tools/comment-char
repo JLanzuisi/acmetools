@@ -1,0 +1,10 @@
+#!/usr/bin/env rc
+
+fn get_char {
+    switch($1){
+        case *.tex *.dtx *.sty *.cls *.ini
+        	char='%'
+        case *
+        	char='#'
+    }
+}

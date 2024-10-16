@@ -1,0 +1,4 @@
+#!/usr/bin/env rc
+
+PAGER=(plumb -i -d edit)
+acme -a -f $font $*

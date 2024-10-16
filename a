@@ -1,7 +1,0 @@
-#!/bin/sh
-
-font=/mnt/font/SourceCodePro-Medium/11a/font
-
-export PAGER="plumb -i -d edit" \
-
-acme -a -f $font $* &

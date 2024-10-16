@@ -1,9 +1,9 @@
 #!/bin/sh
 
-font=/mnt/font/SourceCodePro-Medium/11a/font
+font=/mnt/font/FiraMono-Medium/12a/font
 export font
 
-export PATH="$HOME/helperscripts/acme-tools:$PLAN9/bin:$PATH" \
+export PATH="$HOME/helperscripts/p9tools:$PLAN9/bin:$PATH" \
     EDITOR=E \
     SHELL=rc \
     PAGER=nobs \
@@ -12,7 +12,8 @@ export PATH="$HOME/helperscripts/acme-tools:$PLAN9/bin:$PATH" \
 
 if ! pgrep -x plumber >/dev/null; then
     plumber
-    cat $HOME/lib/plumbing | 9p write plumb/rules # may need the plumber
 fi
+
+cat $HOME/lib/plumbing | 9p write plumb/rules # may need the plumber
 
 9term -f $font rc
