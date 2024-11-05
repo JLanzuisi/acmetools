@@ -37,7 +37,7 @@ fi
 
 if [ ! -z "$(find $tmpdir -name *.pdf)" ]; then
     for pdf in $tmpdir/*.pdf; do
-        atril $pdf
+        evince $pdf
     done
 else
     echo $tmpdir empty. Deleting.

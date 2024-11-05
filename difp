@@ -14,11 +14,11 @@ fi
 
 tmpdir=/tmp/diff-pdf
 mkdir -p $tmpdir
-tmpdiff="$(echo $1 | sed -e 's/\///g')"
+tmpdiff="$(echo $1 | sed -e 's/\//=/g' | sed -e 's/\.//g')"
 
 echo "Diffing $1 vs $2"
 if [ -z "$noview" ]; then
-    diff-pdf -ms --output-diff=$tmpdir/$tmpdiff $1 $2 && rm $tmpdir/$tmpdiff || atril $tmpdir/$tmpdiff
+    diff-pdf -ms --output-diff=$tmpdir/$tmpdiff $1 $2 && rm $tmpdir/$tmpdiff || evince $tmpdir/$tmpdiff
 else
     diff-pdf -ms --output-diff=$tmpdir/$tmpdiff $1 $2 && rm $tmpdir/$tmpdiff || echo "Diff left at $tmpdir/$tmpdiff"
 fi

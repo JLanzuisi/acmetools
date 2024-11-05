@@ -1,0 +1,5 @@
+#!/usr/bin/env rc
+
+if ( ~ $tabstop '' ) tabstop=4
+
+sam -i $*

@@ -1,3 +1,0 @@
-#!/bin/sh
-
-PATH=/home/j/helperscripts/p9tools:/home/j/clones/plan9port/bin:$PATH rc
